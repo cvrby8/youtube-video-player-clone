@@ -37,8 +37,124 @@ document.addEventListener("keydown", (e) => {
       break
     case "m":
       toggleMute()
+      break
+    case "arrowleft":
+    case "j":
+      skip(-5)
+      break
+    case "arrowright":
+    case "l":
+      skip(5)
+      break
+    case "c":
+      toggleCaptions()
+      break
   }
 })
+
+// Timeline
+
+timelineContainer.addEventListener("mousemove", handleTimelineUpdate)
+timelineContainer.addEventListener("mousedown", toggleScrubbing)
+document.addEventListener("mouseup", e => {
+  if (isScrubbing) {
+    toggleScrubbing(e)
+  }
+})
+document.addEventListener("mousemove", (e) => {
+  if (isScrubbing) {
+    handleTimelineUpdate(e)
+  }
+})
+
+let isScrubbing = false
+let wasPaused
+function toggleScrubbing(e) {
+  const { left, width } = timelineContainer.getBoundingClientRect()
+  const percent = Math.min(1, Math.max(0, (e.clientX - left) / width))
+  isScrubbing = (e.buttons & 1) === 1
+  videoContainer.classList.toggle("scrubbing", isScrubbing)
+  if (isScrubbing) {
+    wasPaused = video.paused
+    video.pause()
+  } else {
+    video.currentTime = percent * video.duration
+    if (!wasPaused) {
+      video.play()
+    }
+  }
+
+  handleTimelineUpdate()
+}
+
+function handleTimelineUpdate(e) {
+  const { left, width } = timelineContainer.getBoundingClientRect()
+  const percent = Math.min(1, Math.max(0, (e.clientX - left) / width))
+  const previewImageNumber = Math.max(1, Math.floor(percent * video.duration  / 10))
+  const previewImage = `assets/previewImgs/preview${previewImageNumber}.jpg`
+  previewImg.src = previewImage
+  timelineContainer.style.setProperty("--preview-position", percent)
+
+  if (isScrubbing) {
+    e.preventDefault()
+    thumbnailImg.src = previewImage
+    timelineContainer.style.setProperty("--progress-position", percent)
+  }
+}
+
+// Playback speed
+
+speedBtn.addEventListener("click", changePlaybackSpeed)
+
+function changePlaybackSpeed() {
+  const currentSpeed = video.playbackRate
+  let newSpeed = currentSpeed + 0.25
+  if (newSpeed > 2) {
+    newSpeed = 0.5
+  }
+  video.playbackRate = newSpeed
+  speedBtn.textContent = `${newSpeed}x`
+}
+
+// Captions
+
+const captions = video.textTracks[0]
+captions.mode = "hidden"
+
+captionsBtn.addEventListener("click", toggleCaptions)
+
+function toggleCaptions() {
+  const isHidden = captions.mode === "hidden"
+  captions.mode = isHidden ? "showing" : "hidden"
+  videoContainer.classList.toggle("captions", isHidden)
+}
+
+// Duration
+
+function skip(seconds) {
+  video.currentTime += seconds
+}
+
+video.addEventListener("loadedmetadata", () => {
+  totalTimeElem.textContent = formatTime(video.duration)
+})
+
+video.addEventListener("timeupdate", () => {
+  currentTimeElem.textContent = formatTime(video.currentTime)
+  const percent = video.currentTime / video.duration
+  timelineContainer.style.setProperty("--progress-position", percent)
+})
+
+function formatTime(time) {
+  const minutes = Math.floor(time / 60)
+  const seconds = Math.floor(time % 60)
+  const hours = Math.floor(time / 3600)
+  if (hours > 0) {
+    return `${hours}:${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`
+  }
+
+  return `${minutes}:${seconds.toString().padStart(2, "0")}`
+}
 
 // Volume
 
