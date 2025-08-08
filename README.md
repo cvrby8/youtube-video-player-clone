@@ -1,6 +1,8 @@
 # YouTube Video Player Clone
 
-A fully functional video player built with vanilla HTML, CSS, and JavaScript that replicates the core features of YouTube's video player interface. This project was created as a learning exercise following the tutorial from [Web Dev Simplified](https://www.youtube.com/watch?v=ZeNyjnneq_w).
+A fully functional video player built with vanilla HTML, CSS, and JavaScript that replicates the core features of YouTube's video player interface. This project was created as a learning exercise following the tutorial from [Web Dev Simplified](https://www.youtube.com/watch?v=ZeNyjnneq_w)
+
+![YouTube Video Player Clone Screenshot](screenshot.png)
 
 ## 🎥 Features
 
@@ -11,6 +13,14 @@ A fully functional video player built with vanilla HTML, CSS, and JavaScript tha
 - **Theater Mode**: Switch to theater layout with the button or press `T`
 - **Mini Player**: Enter picture-in-picture mode with the button or press `I`
 - **Mute**: Toggle mute with the button or press `M`
+- **Captions**: Toggle subtitles with the button or press `C`
+- **Playback Speed**: Adjust video speed (0.5x to 2x) with the speed button
+
+### Timeline & Navigation
+- **Timeline Scrubbing**: Click and drag on the timeline to seek
+- **Preview Thumbnails**: Hover over timeline to see video previews
+- **Skip Forward/Backward**: Press `L` or `→` to skip 5 seconds forward, `J` or `←` to skip 5 seconds backward
+- **Time Display**: Current time and total duration shown
 
 ### User Experience
 - **Auto-hiding Controls**: Video controls fade out when not in use
@@ -18,12 +28,14 @@ A fully functional video player built with vanilla HTML, CSS, and JavaScript tha
 - **Responsive Design**: Adapts to different screen sizes
 - **Smooth Animations**: CSS transitions for polished interactions
 - **Volume Level Indicators**: Visual feedback for volume states (high/low/muted)
+- **Scrubbing Preview**: See video thumbnails while scrubbing through timeline
 
 ### Visual Design
 - **YouTube-like Interface**: Familiar controls and layout
 - **Hover Effects**: Interactive button states
 - **Gradient Overlay**: Semi-transparent gradient behind controls
 - **SVG Icons**: Scalable vector graphics for crisp display
+- **Preview Images**: Thumbnail previews during timeline scrubbing
 
 ## 🚀 Getting Started
 
@@ -66,6 +78,10 @@ youtube-video-player-clone/
 - **Fullscreen button**: Enter/exit fullscreen
 - **Theater button**: Toggle theater mode
 - **Mini player button**: Enter picture-in-picture
+- **Captions button**: Toggle subtitles
+- **Speed button**: Change playback speed
+- **Timeline**: Click and drag to seek through video
+- **Timeline hover**: See video preview thumbnails
 
 ### Keyboard Shortcuts
 | Key | Action |
@@ -75,6 +91,9 @@ youtube-video-player-clone/
 | `T` | Toggle Theater Mode |
 | `I` | Toggle Mini Player |
 | `M` | Toggle Mute |
+| `C` | Toggle Captions |
+| `L` or `→` | Skip 5 seconds forward |
+| `J` or `←` | Skip 5 seconds backward |
 
 ## 🛠️ Technical Implementation
 
@@ -133,4 +152,4 @@ This project is open source and available under the [MIT License](LICENSE).
 
 ---
 
-**Note**: This is a learning project created for educational purposes. The video player is fully functional and demonstrates modern web development techniques using vanilla HTML, CSS, and JavaScript.
+**Note**: This is a **completed** learning project created for educational purposes. The video player is fully functional and demonstrates modern web development techniques using vanilla HTML, CSS, and JavaScript. All features have been implemented and tested.
